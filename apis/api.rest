@@ -1,0 +1,31 @@
+# /*
+# |--------------------------------------------------------------------------
+# | variables
+# |--------------------------------------------------------------------------
+# */
+@local = http://localhost:3000
+@host = {{local}}
+@user_token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo1LCJ1c2VyX25hbWUiOiJhcm5hYm11bnNoaSIsImZpcnN0X25hbWUiOiJBcm5hYiIsImxhc3RfbmFtZSI6Ik11bnNoaSIsImVtYWlsIjoiYXJuYWIubXVuc2hpQGluZHVzbmV0LmNvLmluIiwicm9sZSI6IlN1cGVyIEFkbWluIiwic2Vzc2lvbkV4cGlyZXNJbk1pbnV0ZXMiOjM2MCwiaWF0IjoxNzA3ODA3MDE5LCJleHAiOjE3MDc4Mjg2MTl9.bRf3M-pGW8lw3KAFt8ZfVugd3_Cbv4csjXifuPSoVao
+@token = {{user_token}}
+
+# /*
+# |--------------------------------------------------------------------------
+# | Test API
+# |--------------------------------------------------------------------------
+# */
+### Admin Test
+GET {{host}}/api/test HTTP/1.1
+
+# /*
+# |--------------------------------------------------------------------------
+# | Test API for 404
+# |--------------------------------------------------------------------------
+# */
+### Admin Test
+GET {{host}}/api HTTP/1.1
+
+# /*
+# |--------------------------------------------------------------------------
+# | Auth API
+# |--------------------------------------------------------------------------
+# */
