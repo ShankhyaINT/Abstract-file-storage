@@ -6,8 +6,8 @@
   "scripts": {
     "clean": "rimraf dist/*",
     "copy-assets": "ts-node tools/copy-assets",
-    "lint": "eslint './src/**/*.ts'",
-    "lint:fix": "eslint './src/**/*.ts' --fix",
+    "lint": "eslint \"./src/**/*.ts\"",
+    "lint:fix": "eslint \"./src/**/*.ts\" --fix",
     "tsc": "tsc",
     "build": "npm-run-all clean lint tsc copy-assets",
     "dev:start": "npm-run-all build start",
@@ -20,6 +20,7 @@
   },
   "license": "ISC",
   "dependencies": {
+    "@types/multer": "^1.4.11",
     "bcrypt": "^5.0.0",
     "bootstrap": "^4.5.3",
     "celebrate": "^13.0.4",
@@ -32,6 +33,7 @@
     "module-alias": "^2.2.2",
     "mongoose": "^5.9.24",
     "morgan": "^1.10.0",
+    "multer": "^1.4.5-lts.1",
     "split2": "^3.2.2",
     "swagger-ui-express": "^4.1.4",
     "uuid": "^9.0.0",
