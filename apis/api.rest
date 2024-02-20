@@ -18,6 +18,29 @@ GET {{host}}/api/test HTTP/1.1
 
 # /*
 # |--------------------------------------------------------------------------
+# | File related API
+# |--------------------------------------------------------------------------
+# */
+### File upload - try from Postman
+POST {{host}}/api/files/upload HTTP/1.1
+
+{
+    "file": choose a file from device
+}
+
+### File list
+GET {{host}}/api/files/list HTTP/1.1
+
+### File delete
+DELETE {{host}}/api/files/delete HTTP/1.1
+Content-Type: application/json
+
+{
+    "files": ["1708410422190.png", "1708410512887.png"]
+}
+
+# /*
+# |--------------------------------------------------------------------------
 # | Test API for 404
 # |--------------------------------------------------------------------------
 # */

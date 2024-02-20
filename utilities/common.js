@@ -254,6 +254,14 @@ const getFileMimeType = async (fileUrl) => {
 	return response;
 };
 
+const createFolderIfNotExists = (folders) => {
+	folders.forEach((folder) => {
+		if (!fs.existsSync(folder)) {
+			fs.mkdirSync(folder);
+		}
+	});
+};
+
 module.exports = {
 	commonDateFormat,
 	commonDateFormat1,
@@ -280,4 +288,5 @@ module.exports = {
 	getDateOnly,
 	getDateTimeOnly,
 	getFileMimeType,
+	createFolderIfNotExists,
 };

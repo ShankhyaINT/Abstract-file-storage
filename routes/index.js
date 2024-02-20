@@ -11,6 +11,7 @@ const express = require('express');
 |--------------------------------------------------------------------------
 */
 const testRouter = require('./TestRouter');
+const fileRouter = require('./FileRouter');
 
 /*
 |--------------------------------------------------------------------------
@@ -28,6 +29,10 @@ const defaultRoutes = [
 	{
 		path: '/',
 		route: [testRouter],
+	},
+	{
+		path: '/files/',
+		route: [fileRouter],
 	},
 ];
 

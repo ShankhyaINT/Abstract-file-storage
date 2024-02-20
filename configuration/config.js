@@ -21,6 +21,9 @@ const config = {
 	dataEncryptionSecret: process.env.DATA_ENCRYPTION_SECRET,
 	allowedOrigin: process.env.ALLOWED_ORIGIN,
 
+	// Folders
+	uploadFolder: process.env.UPLOAD_FOLDER,
+
 	// Email Config
 	mailDetails: {
 		transporter: {

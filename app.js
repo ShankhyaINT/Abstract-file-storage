@@ -29,7 +29,7 @@ const path = require('path');
 */
 const config = require('./configuration/config');
 const { httpStatusCodeMessages } = require('./utilities/constants');
-const { logOnConsole } = require('./utilities/common');
+const { logOnConsole, createFolderIfNotExists } = require('./utilities/common');
 const { limiter } = require('./helpers/customMiddleware');
 
 /*
@@ -78,6 +78,9 @@ app.use(helmet.expectCt());
 | set file upload path
 |--------------------------------------------------------------------------
 */
+const foldersToCreate = [config.uploadFolder];
+createFolderIfNotExists(foldersToCreate);
+
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.use('/uploads_temp', express.static(path.join(__dirname, 'uploads_temp')));
 app.use('/static', express.static(path.join(__dirname, 'email_templates')));
