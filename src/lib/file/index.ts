@@ -59,15 +59,13 @@ class FileStorageService {
     const files = await fs.promises.readdir(this.uploadDirectory);
     const contents: ObjectMetadata[] = await Promise.all(
       files.map(async (fileName) => {
-        const stats = await fs.promises.stat(
-          path.join(this.uploadDirectory, fileName)
-        );
+        const stats = await fs.promises.stat(path.join(this.uploadDirectory, fileName));
         return {
           Key: fileName,
           LastModified: stats.mtime,
           Size: stats.size,
         };
-      })
+      }),
     );
     return { Contents: contents };
   }
@@ -86,7 +84,7 @@ class FileStorageService {
 
   async copyObject(
     sourceKey: string,
-    destinationKey: string
+    destinationKey: string,
   ): Promise<StorageResponse<CopyObjectResult>> {
     const sourceFilePath = path.join(this.uploadDirectory, sourceKey);
     const destinationFilePath = path.join(this.uploadDirectory, destinationKey);
@@ -100,7 +98,7 @@ class FileStorageService {
 
   async updateObject(
     key: string,
-    data: Buffer
+    data: Buffer,
   ): Promise<StorageResponse<{ Key: string; Bucket: string }>> {
     const filePath = path.join(this.uploadDirectory, key);
     await fs.promises.writeFile(filePath, data);
@@ -115,12 +113,10 @@ class FileStorageService {
   validateFileType(req: Request, allowedTypes: string[]): boolean {
     const files = (req.files as Express.Multer.File[]) || [];
     const fileExtensions = files.map((file) => path.extname(file.originalname));
-    return fileExtensions.every((extension) =>
-      allowedTypes.includes(extension.toLowerCase())
-    );
+    return fileExtensions.every((extension) => allowedTypes.includes(extension.toLowerCase()));
   }
 
-  uploadMiddleware(maxFiles?: number): RequestHandler  {
+  uploadMiddleware(maxFiles?: number): RequestHandler {
     if (maxFiles) {
       return this.upload.array('files', maxFiles);
     }
