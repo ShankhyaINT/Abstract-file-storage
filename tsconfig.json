@@ -23,8 +23,8 @@
       "@assets/*": ["assets/*"],
       "@config/*": ["config/*"],
       "@controllers/*": ["controllers/*"],
-      "@modules/*": ["modules/*"],
       "@middleware/*": ["middleware/*"],
+      "@modules/*": ["modules/*"],
       "@routes/*": ["routes/*"],
       "@services/*": ["services/*"],
       "@validations/*": ["validations/*"]

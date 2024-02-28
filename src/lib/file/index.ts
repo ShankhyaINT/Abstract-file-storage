@@ -23,7 +23,7 @@ interface StorageResponse<T> {
   Data?: T;
 }
 
-class FileStorageService {
+export class FileStorageService {
   private readonly baseFolder: string;
   private readonly uploadDirectory: string;
   private readonly upload: multer.Multer;
@@ -120,8 +120,24 @@ class FileStorageService {
     if (maxFiles) {
       return this.upload.array('files', maxFiles);
     }
-    return this.upload.array('files');
+    return this.upload.single('files');
+  }
+
+  async getFiles(keys: string[]): Promise<StorageResponse<Buffer[]>> {
+    const filesData: Buffer[] = [];
+    for (const key of keys) {
+      try {
+        const filePath = path.join(this.uploadDirectory, key);
+        const data = await fs.promises.readFile(filePath);
+        filesData.push(data);
+      } catch (error) {
+        // Handle file not found or any other error
+        // eslint-disable-next-line no-console
+        console.error(`Error reading file '${key}': ${error}`);
+      }
+    }
+    return { Data: filesData };
   }
 }
 
-export default FileStorageService;
+// export default FileStorageService;
